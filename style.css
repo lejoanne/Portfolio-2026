@@ -432,6 +432,11 @@ a {
   background: #000;
 }
 
+.work__image--cover {
+  object-fit: cover;
+  background: #c6b299;
+}
+
 .work__info {
   display: flex;
   flex-direction: column;
