@@ -1,0 +1,532 @@
+/* =========================================================
+   Joanne Le — Portfolio 2026
+   Editorial pink palette · mixed serif/sans · interactive
+   ========================================================= */
+
+@font-face {
+  font-family: "Regarn";
+  src: url("assets/fonts/Regarn-SemiBold.otf") format("opentype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Neue Augenblick";
+  src: url("assets/fonts/NeueAugenblick-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Neue Augenblick";
+  src: url("assets/fonts/NeueAugenblick-UltraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Neue Augenblick";
+  src: url("assets/fonts/NeueAugenblick-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --bg: #0c0c0c;
+  --bg-deep: #060606;
+  --ink: #f1ebe4;
+  --ink-soft: #b0a99e;
+  --ink-muted: #6a6760;
+  --paper: #f5f0e8;
+  --accent: #f1ebe4;
+  --hairline: rgba(255, 255, 255, 0.1);
+
+  --serif: "Fraunces", "Times New Roman", serif;
+  --sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --display: "Neue Augenblick", "Regarn", "Fraunces", serif;
+
+  --edge: clamp(20px, 3vw, 48px);
+  --gap: clamp(16px, 2vw, 32px);
+
+  --ease: cubic-bezier(0.7, 0, 0.2, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* clip (not hidden) so we don't break position: sticky */
+  overflow-x: clip;
+}
+
+body {
+  min-height: 100vh;
+  position: relative;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+/* ---------- Subtle paper grain ---------- */
+.grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.22;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.5 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+/* ===================== NAV ===================== */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 20px var(--edge);
+  font-size: 15px;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+}
+
+.nav__links {
+  display: flex;
+  gap: 22px;
+}
+
+.nav__links a,
+.nav__copy {
+  position: relative;
+  text-decoration: none;
+  transition: opacity 0.3s var(--ease);
+}
+
+.nav__links a:hover {
+  text-decoration: underline;
+  text-decoration-color: #fff;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+}
+
+.nav__copy {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+  cursor: pointer;
+}
+
+.nav__copy:hover {
+  text-decoration: underline;
+  text-decoration-color: #fff;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+}
+
+.nav__copy-icon {
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+.nav__copy.is-copied .nav__copy-icon {
+  opacity: 0;
+  width: 0;
+  overflow: hidden;
+}
+
+.nav__copy.is-copied .nav__copy-text {
+  color: #fff;
+}
+
+/* ===================== HERO ===================== */
+.hero {
+  position: relative;
+  min-height: 72vh;
+  padding: 14vh var(--edge) 6vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.hero__title {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: clamp(28px, 4.4vw, 76px);
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  max-width: 1500px;
+}
+
+.hero__title .line {
+  display: block;
+  overflow: visible;
+}
+
+.hero__title .word {
+  display: inline-block;
+  will-change: transform, opacity;
+  transform-origin: 50% 50%;
+}
+
+.hero__title .serif,
+.hero__title .name {
+  font-family: var(--display);
+  font-weight: 800;
+}
+
+.hero__title .sans {
+  font-family: var(--sans);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  font-size: 0.92em;
+  vertical-align: 0.02em;
+}
+
+.hero__title .italic {
+  font-style: italic;
+}
+
+.hero__title .dash {
+  font-family: var(--serif);
+  font-weight: 300;
+  margin: 0 0.05em;
+  display: inline-block;
+}
+
+.hero__title .hero__star {
+  font-family: var(--sans);
+  font-weight: 300;
+  letter-spacing: 0;
+}
+
+.caption {
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.45;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+}
+
+.caption.muted {
+  color: var(--ink-muted);
+}
+
+.caption.link {
+  position: relative;
+  width: max-content;
+  transition: transform 0.4s var(--ease);
+}
+
+.caption.link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.4;
+  transform-origin: left;
+  transition: transform 0.45s var(--ease), opacity 0.3s;
+}
+
+.caption.link:hover::after {
+  transform: scaleX(0);
+  transform-origin: right;
+}
+
+.caption.link:hover {
+  transform: translateX(4px);
+}
+
+@media (max-width: 720px) {
+  .hero { padding-top: 18vh; }
+}
+
+/* ===================== WORKS (simple scroll list) ===================== */
+.works {
+  position: relative;
+  margin-top: -12vh;
+  padding: clamp(48px, 8vh, 96px) var(--edge) clamp(80px, 12vh, 140px);
+}
+
+.works__inner {
+  max-width: 1152px;
+}
+
+.work__eyebrow {
+  display: none;
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.works__list {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(64px, 10vh, 120px);
+}
+
+.work {
+  --work-block-gap: clamp(24px, 3vw, 36px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--work-block-gap);
+}
+
+.work[hidden] {
+  display: none !important;
+}
+
+.work__media {
+  position: relative;
+  width: min(100%, 984px);
+  aspect-ratio: 16 / 10;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #000;
+  box-shadow:
+    0 0 0 1px var(--hairline),
+    0 40px 80px -48px rgba(0, 0, 0, 0.85);
+}
+
+.work__media.is-single-slide .work__nav,
+.work__media.is-single-slide .work__slide-count {
+  display: none;
+}
+
+.work__viewport {
+  position: absolute;
+  inset: 0;
+}
+
+.work__slides {
+  display: flex;
+  height: 100%;
+  transition: transform 0.5s var(--ease);
+  will-change: transform;
+}
+
+.work__slide {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  min-width: 100%;
+}
+
+.work__embed {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.work__nav {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  background: rgba(12, 12, 12, 0.55);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: background 0.25s var(--ease), border-color 0.25s var(--ease), opacity 0.25s var(--ease);
+}
+
+.work__nav:hover:not(:disabled) {
+  background: rgba(12, 12, 12, 0.8);
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+.work__nav:disabled {
+  opacity: 0.25;
+  cursor: default;
+}
+
+.work__nav--prev { left: 14px; }
+.work__nav--next { right: 14px; }
+
+.work__slide-count {
+  position: absolute;
+  left: 50%;
+  bottom: 14px;
+  z-index: 2;
+  transform: translateX(-50%);
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(12, 12, 12, 0.55);
+  border: 1px solid var(--hairline);
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+  backdrop-filter: blur(8px);
+}
+
+.work__art {
+  width: 100%;
+  height: 100%;
+}
+
+.work__video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  background: #000;
+}
+
+.work__image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  background: #000;
+}
+
+.work__info {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: 720px;
+}
+
+.work__title {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(20px, 2.2vw, 28px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: calc(var(--work-block-gap) - 4px);
+}
+
+.work__sub {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: clamp(16px, 1.25vw, 19px);
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+  color: var(--ink-soft);
+}
+
+.work__sub + .work__sub {
+  margin-top: 0.75em;
+}
+
+@media (max-width: 720px) {
+  .works {
+    margin-top: -6vh;
+    padding-top: 32px;
+  }
+
+  .work__media {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+  }
+}
+
+/* ---------- Per-project art (gradient placeholders that look "image-like") ---------- */
+.art-1 {
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(255, 255, 255, 0.55), transparent 45%),
+    radial-gradient(ellipse at 70% 70%, var(--c3, rgba(0,0,0,0.4)), transparent 55%),
+    linear-gradient(180deg, var(--c1, #f2d6d8) 0%, var(--c2, #c88891) 60%, var(--c3, #5b2329) 100%);
+}
+.art-2 {
+  background:
+    conic-gradient(from 220deg at 60% 30%, rgba(255,255,255,0.3), transparent 40%, rgba(255,255,255,0.4) 70%, transparent 100%),
+    radial-gradient(ellipse at 30% 80%, var(--c3), transparent 55%),
+    linear-gradient(160deg, var(--c1) 0%, var(--c2) 50%, var(--c3) 100%);
+}
+.art-3 {
+  background:
+    radial-gradient(circle at 50% 30%, rgba(255,255,255,0.5), transparent 30%),
+    repeating-linear-gradient(40deg, rgba(255,255,255,0.06) 0 2px, transparent 2px 22px),
+    linear-gradient(200deg, var(--c1), var(--c2) 55%, var(--c3));
+}
+.art-4 {
+  background:
+    radial-gradient(circle at 50% 35%, rgba(255,255,255,0.6), transparent 25%),
+    radial-gradient(circle at 50% 35%, transparent 110px, rgba(255,255,255,0.12) 112px, transparent 114px),
+    radial-gradient(circle at 50% 35%, transparent 180px, rgba(255,255,255,0.08) 182px, transparent 184px),
+    linear-gradient(180deg, var(--c1), var(--c2) 50%, var(--c3));
+}
+.art-5 {
+  background:
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.08) 0 1px, transparent 1px 28px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.08) 0 1px, transparent 1px 28px),
+    radial-gradient(ellipse at 70% 30%, rgba(255,255,255,0.35), transparent 45%),
+    linear-gradient(220deg, var(--c1), var(--c2) 55%, var(--c3));
+}
+
+/* ===================== FOOTER ===================== */
+.foot {
+  padding: 40px var(--edge);
+  border-top: 1px solid var(--hairline);
+}
+
+.foot__row {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* ===================== A11y / Motion ===================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
