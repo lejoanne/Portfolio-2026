@@ -340,7 +340,7 @@ a {
 .works__list {
   display: flex;
   flex-direction: column;
-  gap: clamp(64px, 10vh, 120px);
+  gap: calc(clamp(64px, 10vh, 120px) + 1.6em);
 }
 
 .work {
@@ -474,6 +474,10 @@ a {
 .work__image--cover {
   object-fit: cover;
   background: #c6b299;
+}
+
+.work__image--cover-clutch {
+  background: #b8cce0;
 }
 
 .work__info {
