@@ -510,6 +510,17 @@ a {
   margin-top: 0.75em;
 }
 
+.work__sub-link {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
+.work__sub-link:hover {
+  color: inherit;
+}
+
 @media (max-width: 720px) {
   .works {
     margin-top: -6vh;
