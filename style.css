@@ -488,6 +488,10 @@ a {
 }
 
 .work__title {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 10px;
   font-family: var(--display);
   font-weight: 800;
   font-size: clamp(20px, 2.2vw, 28px);
@@ -495,6 +499,15 @@ a {
   letter-spacing: -0.02em;
   color: var(--ink);
   margin-bottom: calc(var(--work-block-gap) - 4px);
+}
+
+.work__company {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  color: var(--ink-muted);
 }
 
 .work__sub {
